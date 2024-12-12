@@ -38,15 +38,23 @@ function App() {
  <>
  <DndProvider backend ={HTML5Backend}>
  <h1 className='text-center text-3xl text-semibold mt-4 py-2'>Drag and Drop</h1>
- {notes.map ((note)=>
-  
-  <Note 
-  key={note.id} // Use a stable and unique key
-  note={note} // Pass the full item object to the Note component
-  binnedItems={binnedItems}
-  setNotes={setNotes} // Pass setNotes correctly
-/>
- )}
+{/* Display Notes */}
+<div>
+          {notes.length > 0 ? (
+            notes.map((note) => (
+              <Note
+                key={note.id}
+                note={note}
+                binnedItems={binnedItems}
+                setBinnedItems={setBinnedItems}
+                setNotes={setNotes}
+              />
+            ))
+          ) : (
+            <p>No notes available. All notes have been moved to the bin!</p>
+          )}
+        </div>
+
  <Bin  binnedItems={binnedItems}/>
  
  </DndProvider>
